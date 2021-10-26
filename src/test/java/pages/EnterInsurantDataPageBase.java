@@ -7,25 +7,26 @@ import org.openqa.selenium.support.ui.Select;
 import java.io.File;
 import java.io.IOException;
 
-public class EnterInsurantDataPage extends BasePage {
-    public EnterInsurantDataPage(WebDriver driver) { super(driver); }
+public class EnterInsurantDataPageBase extends PageBase {
 
-    public EnterInsurantDataPage addFirstName (String keys) {
+    public EnterInsurantDataPageBase(WebDriver driver) { super (driver); }
+
+    public EnterInsurantDataPageBase addFirstName (String keys) {
         driver.findElement(By.id("firstname")).sendKeys(keys);
         return this;
     }
 
-    public EnterInsurantDataPage addLastName (String keys) {
+    public EnterInsurantDataPageBase addLastName (String keys) {
         driver.findElement(By.id("lastname")).sendKeys(keys);
         return this;
     }
 
-    public EnterInsurantDataPage addDateOfBirth (String keys) {
+    public EnterInsurantDataPageBase addDateOfBirth (String keys) {
         driver.findElement(By.id("birthdate")).sendKeys(keys);
         return this;
     }
 
-    public EnterInsurantDataPage addGender (String keys) {
+    public EnterInsurantDataPageBase addGender (String keys) {
         if (keys.equals("Male")) {
             WebElement radioButton = driver.findElement(By.xpath("//div/p[@class='group']/label[@class='ideal-radiocheck-label']/input[@id='gendermale']"));
             Actions actions = new Actions(driver);
@@ -38,33 +39,33 @@ public class EnterInsurantDataPage extends BasePage {
         } return this;
     }
 
-    public EnterInsurantDataPage addStreetAddress (String keys) {
+    public EnterInsurantDataPageBase addStreetAddress (String keys) {
         driver.findElement(By.id("streetaddress")).sendKeys(keys);
         return this;
     }
 
-    public EnterInsurantDataPage addCountry (String keys) {
+    public EnterInsurantDataPageBase addCountry (String keys) {
         WebElement field = driver.findElement(By.id("country"));
         new Select(field).selectByVisibleText(keys);
         return this;
     }
 
-    public EnterInsurantDataPage addZipCode (int keys) {
+    public EnterInsurantDataPageBase addZipCode (int keys) {
         driver.findElement(By.id("zipcode")).sendKeys((String.valueOf(keys)));
         return this;
     }
 
-    public EnterInsurantDataPage addCity (String keys) {
+    public EnterInsurantDataPageBase addCity (String keys) {
         driver.findElement(By.id("city")).sendKeys(keys);
         return this;
     }
 
-    public EnterInsurantDataPage addOccupation (String keys) {
+    public EnterInsurantDataPageBase addOccupation (String keys) {
         driver.findElement(By.id("occupation")).sendKeys(keys);
         return this;
     }
 
-    public EnterInsurantDataPage addHobbies (String[] keys) {
+    public EnterInsurantDataPageBase addHobbies (String[] keys) {
         for (String key : keys) {
             WebElement check = driver.findElement(By.xpath("//div/p[@class='group']/label[@class='ideal-radiocheck-label']/input[@id='" + key + "']"));
             Actions actions = new Actions(driver);
@@ -73,28 +74,28 @@ public class EnterInsurantDataPage extends BasePage {
         return this;
     }
 
-    public EnterInsurantDataPage addWebsite (String keys) {
+    public EnterInsurantDataPageBase addWebsite (String keys) {
         driver.findElement(By.id("website")).sendKeys(keys);
         return this;
     }
 
-    public EnterInsurantDataPage addPicture () throws IOException {
+    public EnterInsurantDataPageBase addPicture () throws IOException {
         driver.findElement(By.id("picture")).sendKeys( new File("../automacao-webDriver-Accenture/example.txt").getCanonicalPath());
         return this;
     }
 
-    public EnterInsurantDataPage clickInNext() {
+    public EnterInsurantDataPageBase clickInNext() {
         driver.findElement(By.id("nextenterproductdata")).click();
         return this;
     }
 
-    public EnterInsurantDataPage clickInPrev() {
+    public EnterInsurantDataPageBase clickInPrev() {
         driver.findElement(By.id("preventervehicledata")).click();
         return this;
     }
 
-    public EnterInsurantDataPage newInsurant (String firstname, String lastname, String birthdate, String gender, String streetaddress, String country,
-                                              int zipcode, String city, String occupation, String[] hobbies, String website) throws IOException {
+    public EnterInsurantDataPageBase newInsurant (String firstname, String lastname, String birthdate, String gender, String streetaddress, String country,
+                                                  int zipcode, String city, String occupation, String[] hobbies, String website) throws IOException {
         return addFirstName(firstname)
                 .addLastName(lastname)
                 .addDateOfBirth(birthdate)

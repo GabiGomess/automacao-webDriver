@@ -5,43 +5,43 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.Select;
 
-public class EnterVehicleDataPage extends BasePage {
-    public EnterVehicleDataPage(WebDriver driver) { super(driver); }
+public class EnterVehicleDataPageBase extends PageBase {
+    public EnterVehicleDataPageBase(WebDriver driver) { super(driver); }
 
-    public EnterVehicleDataPage addMake (String keys) {
+    public EnterVehicleDataPageBase addMake (String keys) {
         WebElement field = driver.findElement(By.id("make"));
         new Select(field).selectByVisibleText(keys);
         return this;
     }
 
-    public EnterVehicleDataPage addModel (String keys) {
+    public EnterVehicleDataPageBase addModel (String keys) {
         WebElement field = driver.findElement(By.id("model"));
         new Select(field).selectByVisibleText(keys);
         return this;
     }
 
-    public EnterVehicleDataPage addCylinderCapacity (String keys) {
+    public EnterVehicleDataPageBase addCylinderCapacity (String keys) {
         driver.findElement(By.id("cylindercapacity")).sendKeys(keys);
         return this;
     }
 
-    public EnterVehicleDataPage addEnginePerformance (String keys) {
+    public EnterVehicleDataPageBase addEnginePerformance (String keys) {
         driver.findElement(By.id("engineperformance")).sendKeys(keys);
         return this;
     }
 
-    public EnterVehicleDataPage addDateOfManufacture (String keys) {
+    public EnterVehicleDataPageBase addDateOfManufacture (String keys) {
         driver.findElement(By.id("dateofmanufacture")).sendKeys(keys);
         return this;
     }
 
-    public EnterVehicleDataPage addNumberOfSeats (String keys) {
+    public EnterVehicleDataPageBase addNumberOfSeats (String keys) {
         WebElement field = driver.findElement(By.id("numberofseats"));
         new Select(field).selectByVisibleText(keys);
         return this;
     }
 
-    public EnterVehicleDataPage addRightHandDrive (String keys) {
+    public EnterVehicleDataPageBase addRightHandDrive (String keys) {
         if (keys.equals("Yes")) {
             WebElement radio = driver.findElement(By.xpath("//div/p[@class='group']/label[@class='ideal-radiocheck-label']/input[@id='righthanddriveyes']"));
             Actions actions = new Actions(driver);
@@ -54,50 +54,50 @@ public class EnterVehicleDataPage extends BasePage {
         } return this;
     }
 
-    public EnterVehicleDataPage addNumberOfSeatsMotorcycle (String keys) {
+    public EnterVehicleDataPageBase addNumberOfSeatsMotorcycle (String keys) {
         WebElement field = driver.findElement(By.id("numberofseatsmotorcycle"));
         new Select(field).selectByVisibleText(keys);
         return this;
     }
 
-    public EnterVehicleDataPage addFuelType (String keys) {
+    public EnterVehicleDataPageBase addFuelType (String keys) {
         WebElement field = driver.findElement(By.id("fuel"));
         new Select(field).selectByVisibleText(keys);
         return this;
     }
 
-    public EnterVehicleDataPage addPayload (String keys) {
+    public EnterVehicleDataPageBase addPayload (String keys) {
         driver.findElement(By.id("payload")).sendKeys(keys);
         return this;
     }
 
-    public EnterVehicleDataPage addTotalWeight (String keys) {
+    public EnterVehicleDataPageBase addTotalWeight (String keys) {
         driver.findElement(By.id("totalweight")).sendKeys(keys);
         return this;
     }
 
-    public EnterVehicleDataPage addListPrice (String keys) {
+    public EnterVehicleDataPageBase addListPrice (String keys) {
         driver.findElement(By.id("listprice")).sendKeys(keys);
         return this;
     }
 
-    public EnterVehicleDataPage addLicensePlateNumber (String keys) {
+    public EnterVehicleDataPageBase addLicensePlateNumber (String keys) {
         driver.findElement(By.id("licenseplatenumber")).sendKeys(keys);
         return this;
     }
 
-    public EnterVehicleDataPage addAnnualMileage (String keys) {
+    public EnterVehicleDataPageBase addAnnualMileage (String keys) {
         driver.findElement(By.id("annualmileage")).sendKeys(keys);
         return this;
     }
 
-    public EnterVehicleDataPage clickInNext() {
+    public EnterVehicleDataPageBase clickInNext() {
         driver.findElement(By.id("nextenterinsurantdata")).click();
         return this;
     }
 
-    public EnterVehicleDataPage newVehicle (String make, String model, String ccm, String engine, String data, String seats1, String hand, String seats2,
-                                            String fuel, String payload, String totalweight, String listprice, String licenseplatenumber, String annualmileage) {
+    public EnterVehicleDataPageBase newVehicle (String make, String model, String ccm, String engine, String data, String seats1, String hand, String seats2,
+                                                String fuel, String payload, String totalweight, String listprice, String licenseplatenumber, String annualmileage) {
         return addMake(make)
                 .addModel(model)
                 .addCylinderCapacity(ccm)

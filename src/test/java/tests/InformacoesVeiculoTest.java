@@ -8,10 +8,7 @@ import org.junit.rules.TestName;
 import org.junit.runner.RunWith;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import pages.EnterInsurantDataPage;
-import pages.EnterProductDataPage;
-import pages.EnterVehicleDataPage;
-import pages.SelectPriceOptionPage;
+import pages.*;
 import utils.Web;
 import java.io.IOException;
 
@@ -36,7 +33,7 @@ public class InformacoesVeiculoTest {
         counter = driver.findElement(By.xpath("//div/nav[@id='idealsteps-nav']/ul/li/a[@name='Enter Vehicle Data']/span")).getText();
         assertEquals(counter, "12");
 
-        String newVehicleData = new EnterVehicleDataPage(driver)
+        String newVehicleData = new EnterVehicleDataPageBase(driver)
                 .addMake("Opel")
                 .addModel("Moped")
                 .addCylinderCapacity("1999")
@@ -52,7 +49,7 @@ public class InformacoesVeiculoTest {
                 .addLicensePlateNumber("A123")
                 .addAnnualMileage("100")
                 .clickInNext()
-                .capturarTextoToast("Enter Insurant Data");
+                .nextPage("Enter Insurant Data");
 
         counter = driver.findElement(By.xpath("//div/nav[@id='idealsteps-nav']/ul/li/a[@name='Enter Vehicle Data']/span")).getText();
         assertEquals(counter, "0");
@@ -65,7 +62,7 @@ public class InformacoesVeiculoTest {
         counter = driver.findElement(By.xpath("//div/nav[@id='idealsteps-nav']/ul/li/a[@name='Enter Insurant Data']/span")).getText();
         assertEquals(counter, "7");
 
-        String newInsurantData = new EnterInsurantDataPage(driver)
+        String newInsurantData = new EnterInsurantDataPageBase(driver)
                 .addFirstName("Gabriela")
                 .addLastName("Gomes")
                 .addDateOfBirth("06/04/1993")
@@ -79,7 +76,7 @@ public class InformacoesVeiculoTest {
                 .addWebsite("https://www.linkedin.com/in/gabriela-gomess/")
                 .addPicture()
                 .clickInNext()
-                .capturarTextoToast("Enter Product Data");
+                .nextPage("Enter Product Data");
 
         counter = driver.findElement(By.xpath("//div/nav[@id='idealsteps-nav']/ul/li/a[@name='Enter Insurant Data']/span")).getText();
         assertEquals(counter, "0");
@@ -95,7 +92,7 @@ public class InformacoesVeiculoTest {
 //        preencherCorretamenteAbaEnterVehicleData();
 //        preencherCorretamenteAbaEnterInsurantData();
 
-        String newProductData = new EnterProductDataPage(driver)
+        String newProductData = new EnterProductDataPageBase(driver)
                 .addStartDate("01/01/2022")
                 .addInsuranceSum("20.000.000,00")
                 .addMeritRating("Malus 10")
@@ -103,7 +100,7 @@ public class InformacoesVeiculoTest {
                 .addOptionalProducts(new String[]{"LegalDefenseInsurance"})
                 .addCourtesyCar("Yes")
                 .clickInNext()
-                .capturarTextoToast("Select Price Option");
+                .nextPage("Select Price Option");
 
         counter = driver.findElement(By.xpath("//div/nav[@id='idealsteps-nav']/ul/li/a[@name='Enter Product Data']/span")).getText();
         assertEquals(counter, "0");
@@ -112,23 +109,61 @@ public class InformacoesVeiculoTest {
 
     @Test
     public void preencherCorretamenteAbaSelectPriceOption() throws Exception {
-        preencherCorretamenteAbaEnterVehicleData();
-        preencherCorretamenteAbaEnterInsurantData();
-        preencherCorretamenteAbaEnterProductData();
+//        preencherCorretamenteAbaEnterVehicleData();
+//        preencherCorretamenteAbaEnterInsurantData();
+//        preencherCorretamenteAbaEnterProductData();
 
         driver.findElement(By.id("selectpriceoption")).click();
         counter = driver.findElement(By.xpath("//div/nav[@id='idealsteps-nav']/ul/li/a[@name='Select Price Option']/span")).getText();
         assertEquals(counter, "1");
 
-        String newSelectPrice = new SelectPriceOptionPage(driver)
+        String newSelectPrice = new SelectPriceOptionPageBase(driver)
                 .addPrice("selectplatinum")
-                .validateViewQuote()
+//                .validateViewQuote()
                 .clickInNext()
-                .capturarTextoToast("Send Quote");
+                .nextPage("Send Quote");
 
         counter = driver.findElement(By.xpath("//div/nav[@id='idealsteps-nav']/ul/li/a[@name='Select Price Option']/span")).getText();
         assertEquals(counter, "0");
         assertTrue(newSelectPrice.contains("Send Quote"));
+
+//        List<String> abas = new ArrayList<>(driver.getWindowHandles());
+//        driver.switchTo().window(abas.get(1));
+//        Thread.sleep(1000);
+//        assertEquals(driver.getCurrentUrl(), "http://sampleapp.tricentis.com/101/tcpdf/pdfs/quote.php");
+//        assertNotNull(driver.getPageSource());
+//        assertTrue(driver.getPageSource().contains("type=\"application/pdf\""));
+//        driver.switchTo().window(abas.get(0));
+
+    }
+
+    @Test
+    public void preencherCorretamenteAbaSendQuote() throws Exception {
+        preencherCorretamenteAbaEnterVehicleData();
+        preencherCorretamenteAbaEnterInsurantData();
+        preencherCorretamenteAbaEnterProductData();
+        preencherCorretamenteAbaSelectPriceOption();
+
+        driver.findElement(By.id("sendquote")).click();
+        counter = driver.findElement(By.xpath("//div/nav[@id='idealsteps-nav']/ul/li/a[@name='Send Quote']/span")).getText();
+        assertEquals(counter, "4");
+
+        String newQuote = new SendQuotePageBase(driver)
+                .addEmail("gabrielaofgomes@gmail.com")
+                .addPhone("31999999999")
+                .addUsername("gabsGo")
+                .addPassword("Gabi2010")
+                .addConfirmPassword("Gabi2010")
+                .addComments("Comentarios basicos para validar operacao")
+                .clickInSend()
+                .validatePopUp()
+                .clickInPopUpOk()
+                .nextPage("");
+
+        counter = driver.findElement(By.xpath("//div/nav[@id='idealsteps-nav']/ul/li/a[@name='Send Quote']/span")).getText();
+        assertEquals(counter, "0");
+
+        assertEquals(driver.findElement(By.id("password")).getText(), driver.findElement(By.id("confirmpassword")).getText());
     }
 
     @After
