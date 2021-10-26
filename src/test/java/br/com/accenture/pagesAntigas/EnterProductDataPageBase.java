@@ -1,4 +1,5 @@
-package pages;
+package br.com.accenture.pagesAntigas;
+import br.com.accenture.bases.PageBase;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;

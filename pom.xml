@@ -4,20 +4,20 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>br.com.webDriver</groupId>
+    <groupId>br.com.accenture</groupId>
     <artifactId>automacao-webDriver-Accenture</artifactId>
     <version>1.0-SNAPSHOT</version>
 
-    <name>Testes Automatizados WebDriver</name>
+    <name>Testes Automatizados - Accenture</name>
 
     <properties>
+        <maven.compiler.source>17</maven.compiler.source>
+        <maven.compiler.target>17</maven.compiler.target>
         <serenity.version>2.0.70</serenity.version>
         <serenity.maven.version>2.0.70</serenity.maven.version>
         <serenity.cucumber.version>1.9.38</serenity.cucumber.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <webdriver.driver>chrome</webdriver.driver>
-        <maven.compiler.source>17</maven.compiler.source>
-        <maven.compiler.target>17</maven.compiler.target>
         <encoding>UTF-8</encoding>
     </properties>
 
@@ -41,11 +41,6 @@
             <scope>test</scope>
         </dependency>
         <dependency>
-            <groupId>ch.qos.logback</groupId>
-            <artifactId>logback-classic</artifactId>
-            <version>1.0.13</version>
-        </dependency>
-        <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
             <version>4.12</version>
@@ -55,12 +50,6 @@
             <groupId>org.hamcrest</groupId>
             <artifactId>hamcrest-all</artifactId>
             <version>1.3</version>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.easetech</groupId>
-            <artifactId>easytest-core</artifactId>
-            <version>1.4.0</version>
             <scope>test</scope>
         </dependency>
     </dependencies>
@@ -76,6 +65,7 @@
                 </configuration>
             </plugin>
             <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-failsafe-plugin</artifactId>
                 <version>2.22.1</version>
                 <configuration>
@@ -117,5 +107,4 @@
             </plugin>
         </plugins>
     </build>
-
 </project>

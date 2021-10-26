@@ -1,4 +1,4 @@
-package utils;
+package br.com.accenture.utils;
 import org.jetbrains.annotations.NotNull;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
