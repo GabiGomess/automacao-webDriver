@@ -14,3 +14,5 @@ https://www.linkedin.com/in/gabriela-gomess/
 | ------ | ------ |
 | Cucumber | [https://mvnrepository.com/artifact/io.cucumber] |
 | JUnit | [https://mvnrepository.com/artifact/io.cucumber/cucumber-junit] |
+
+Projeto melhor visualizado em IDE - Intellij
