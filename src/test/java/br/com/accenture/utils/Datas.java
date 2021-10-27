@@ -6,8 +6,8 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Calendar;
 
-public class Generator {
-    public boolean dataValidador(String data) {
+public class Datas {
+    public boolean validador(String data) {
         try {
             SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
             sdf.setLenient(false);
@@ -33,13 +33,16 @@ public class Generator {
         return data_nasc.before(data_hoje);
     }
 
-    public boolean proximoMes(String data) throws ParseException {
-        Calendar data_rec = Calendar.getInstance();
-        data_rec.setTime(new SimpleDateFormat("MM/dd/yyyy").parse(data));
-        data_rec.add(Calendar.MONTH, 1);
-        Calendar data_hoje = Calendar.getInstance();
-        return data_rec.after(data_hoje);
+    public Calendar proximoMes() throws ParseException {
+        Calendar dataProximoMes = Calendar.getInstance();
+        dataProximoMes.add(Calendar.MONTH, 1);
+        return dataProximoMes;
     }
 
+    public boolean validarDataDepois(String data) throws ParseException {
+        Calendar data_rec = Calendar.getInstance();
+        data_rec.setTime(new SimpleDateFormat("MM/dd/yyyy").parse(data));
+        return data_rec.after(proximoMes());
+    }
 }
 
