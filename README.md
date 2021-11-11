@@ -1,6 +1,3 @@
-# Accneture - Gabriela Gomes
-https://www.linkedin.com/in/gabriela-gomess/
-
 ## Plugins
 
 | Plugin | Mais informações |
